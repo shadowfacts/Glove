@@ -1,0 +1,4 @@
+item.glove.name=Glove
+glove:mode.key=Glove Mode
+glove:mode.enable=Enabled Glove Mode
+glove:mode.disable=Disabled Glove Mode

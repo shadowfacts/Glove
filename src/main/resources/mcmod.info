@@ -1,0 +1,14 @@
+[
+	{
+	  "modid": "glove",
+	  "name": "Glove",
+	  "version": "$version",
+	  "mcversion": "$mcversion",
+	  "description": "A glove/"empty hand" mod,
+	  "credits": "",
+	  "url": "https://github.com/shadowfacts/Glove",
+	  "updateUrl": "",
+	  "authorList": [ "shadowfacts" ],
+	  "screenshots": []
+	}
+]
