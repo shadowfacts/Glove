@@ -51,3 +51,9 @@ repositories {
 dependencies {
 	deobfCompile group: "net.shadowfacts", name: "ShadowMC", version: mc_version + "-" + shadowmc_version
 }
+
+jar {
+	manifest {
+		attributes("FMLAT": "glove_at.cfg")
+	}
+}
