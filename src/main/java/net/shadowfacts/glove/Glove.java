@@ -2,18 +2,18 @@ package net.shadowfacts.glove;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,7 +25,6 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.shadowfacts.shadowmc.ShadowMC;
 import net.shadowfacts.shadowmc.item.ItemBase;
 import org.lwjgl.input.Keyboard;
@@ -42,16 +41,18 @@ public class Glove {
 
 	private static final int MSG_ID = 85663;
 
-	public static KeyBinding keyBinding = new KeyBinding("glove:mode.key", KeyConflictContext.IN_GAME, KeyModifier.NONE, Keyboard.KEY_G, MODID);
+	public static KeyBinding keyBinding = new KeyBinding("glove:mode.key", KeyConflictContext.IN_GAME, KeyModifier.NONE, Keyboard.KEY_G, NAME);
 	public static boolean gloveMode = false;
 
 //	Content
-	public static ItemBase glove = new ItemBase("glove");
+	public static ItemBase glove = new ItemBase("glove") {{
+		setCreativeTab(CreativeTabs.MISC);
+	}};
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		GameRegistry.register(glove);
-//		GameRegistry.addRecipe(new ShapelessOreRecipe());
+		GameRegistry.addShapedRecipe(new ItemStack(glove), "W ", " L", 'W', Blocks.WOOL, 'L', Items.LEATHER);
 	}
 
 	@Mod.EventHandler
