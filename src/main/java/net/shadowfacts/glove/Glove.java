@@ -83,7 +83,7 @@ public class Glove {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onRenderSpecificHand(RenderSpecificHandEvent event) {
-		if (gloveMode || (event.getItemStack() != null && event.getItemStack().getItem() == glove)) {
+		if (event.getHand() == EnumHand.MAIN_HAND && event.getItemStack() != null && (gloveMode || event.getItemStack().getItem() == glove)) {
 			event.setCanceled(true);
 
 			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
