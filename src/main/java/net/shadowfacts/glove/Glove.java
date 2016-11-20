@@ -32,7 +32,7 @@ import org.lwjgl.input.Keyboard;
 /**
  * @author shadowfacts
  */
-@Mod(modid = Glove.MODID, name = Glove.NAME, version = Glove.VERSION, dependencies = "required-after:shadowmc@[3.4.5,);", acceptedMinecraftVersions = "[1.10.2]")
+@Mod(modid = Glove.MODID, name = Glove.NAME, version = Glove.VERSION, dependencies = "required-after:shadowmc@[3.4.5,);")
 public class Glove {
 
 	public static final String MODID = "glove";
@@ -69,7 +69,7 @@ public class Glove {
 	public void onKeyInput(InputEvent.KeyInputEvent event) {
 		if (keyBinding.isPressed()) {
 			gloveMode = !gloveMode;
-			ShadowMC.proxy.sendSpamlessMessage(Minecraft.getMinecraft().thePlayer, new TextComponentTranslation(gloveMode ? "glove:mode.enable" : "glove:mode.disable"), MSG_ID);
+			ShadowMC.proxy.sendSpamlessMessage(Minecraft.getMinecraft().player, new TextComponentTranslation(gloveMode ? "glove:mode.enable" : "glove:mode.disable"), MSG_ID);
 		}
 	}
 
@@ -83,10 +83,10 @@ public class Glove {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onRenderSpecificHand(RenderSpecificHandEvent event) {
-		if (event.getHand() == EnumHand.MAIN_HAND && event.getItemStack() != null && (gloveMode || event.getItemStack().getItem() == glove)) {
+		if (event.getHand() == EnumHand.MAIN_HAND && !event.getItemStack().isEmpty() && (gloveMode || event.getItemStack().getItem() == glove)) {
 			event.setCanceled(true);
 
-			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
+			EntityPlayerSP player = Minecraft.getMinecraft().player;
 
 			if (player.isInvisible()) return;
 
@@ -96,7 +96,7 @@ public class Glove {
 			float f3 = event.getHand() == EnumHand.MAIN_HAND ? f : 0.0F;
 			ItemRenderer renderer = Minecraft.getMinecraft().getItemRenderer();
 			float f5 = 1.0F - (renderer.prevEquippedProgressMainHand + (renderer.equippedProgressMainHand - renderer.prevEquippedProgressMainHand) * partialTicks);
-			renderer.renderItemInFirstPerson(player, partialTicks, f1, EnumHand.MAIN_HAND, f3, null, f5);
+			renderer.renderItemInFirstPerson(player, partialTicks, f1, EnumHand.MAIN_HAND, f3, ItemStack.EMPTY, f5);
 		}
 	}
 
