@@ -52,7 +52,6 @@ public class Glove {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		GameRegistry.register(glove);
-		GameRegistry.addShapedRecipe(new ItemStack(glove), "W ", " L", 'W', Blocks.WOOL, 'L', Items.LEATHER);
 	}
 
 	@Mod.EventHandler

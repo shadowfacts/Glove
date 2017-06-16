@@ -1,0 +1,19 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		"W ",
+		" L"
+	],
+	"key": {
+		"W": {
+			"item": "wool"
+		},
+		"L": {
+			"type": "forge:ore_dict",
+			"ore": "leather"
+		}
+	},
+	"result": {
+		"item": "glove:glove"
+	}
+}
