@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author shadowfacts
  */
-public class GloveModel implements IPerspectiveAwareModel {
+public class GloveModel implements IBakedModel {
 
 	private IBakedModel original;
 
